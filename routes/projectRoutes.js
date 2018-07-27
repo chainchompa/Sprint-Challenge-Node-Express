@@ -70,4 +70,21 @@ router.put('/:id', (req, res) => {
   })
 })
 
+//Delete a project, if project still has actions after you delete it then you can still access project/:id for it
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  projectModel
+  .remove(id)
+  .then(project => {
+    if(!project) {
+      res.status(404).json({ message: "The project with the specified ID does not exist." })
+    } else {
+      res.status(200).json({ project })
+    }
+  })
+  .catch(error => {
+    res.status(500).json({ error: "The project could not be removed" })
+  })
+})
+
 module.exports = router;

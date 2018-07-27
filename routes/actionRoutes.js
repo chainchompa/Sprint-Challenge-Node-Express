@@ -51,8 +51,8 @@ router.post('/', (req, res) => {
 
 //Update an action
 router.put('/:id', (req, res) => {
-  const { project_id, description, notes } = req.body;
   const { id } = req.params;
+  const { project_id, description, notes } = req.body;
   if(!project_id || !description || !notes ) {
     res.status(400).json({ error: "Please provide a project ID, description, and notes for this action"});
   }
@@ -63,10 +63,27 @@ router.put('/:id', (req, res) => {
       res.status(404).json({ error: "The action with the specified ID does not exist" })
       return;
     }
-    res.status(200).json({ project })
+    res.status(200).json({ action })
   })
   .catch(error => {
     res.status(500).json({ error: "There was an error while updating the action to the database" })
+  })
+})
+
+//Delete an action
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  actionModel
+  .remove(id)
+  .then(action => {
+    if(!action) {
+      res.status(404).json({ message: "The action with the specified ID does not exist." })
+    } else {
+      res.status(200).json({ action })
+    }
+  })
+  .catch(error => {
+    res.status(500).json({ error: "The action could not be removed" })
   })
 })
 
