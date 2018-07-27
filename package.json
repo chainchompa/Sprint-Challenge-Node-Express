@@ -1,0 +1,22 @@
+{
+  "name": "Sprint-Challenge-Node-Express",
+  "version": "1.0.0",
+  "description": "LambdaSchool Node.js and Express Sprint Challenge",
+  "main": "server.js",
+  "repository": "https://github.com/LambdaSchool/Sprint-Challenge-Node-Express.git",
+  "author": "chainchompa <chainchompa@gmail.com>",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "knex": "^0.15.2",
+    "morgan": "^1.9.0",
+    "sqlite3": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
